@@ -202,8 +202,14 @@ footer {
     .footer {
         padding: 10px;
     }
+ 
 }
-
+@media screen and (max-width:768px) {
+ #mob-text{
+        display: none;
+    }
+    
+}
 @media (max-width: 900px) {
     .overlay-text {
         font-size: 20px;
