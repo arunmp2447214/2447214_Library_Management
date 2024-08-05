@@ -182,7 +182,7 @@ body {
 }
 
 .main-contact {
-    background-image: url('../assets/images/library.jpg');
+    background-image: url('/assets/images/library.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
