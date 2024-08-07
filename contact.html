@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Leaflet.js CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <style>
         body {
-            background-image: url('assets/images/library.jpg'); 
+            background-image: url('assets/images/library.jpg');
             background-size: cover;
             background-position: center;
         }
         .contact-map-container {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
         }
         .contact-form, .map-section {
             flex: 1;
@@ -28,9 +28,16 @@
         }
         .contact-form {
             color: bisque;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* Background blur effect */
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         #map {
             height: 400px;
+            width: 100%;
         }
         .map-link {
             margin-top: 20px;
@@ -71,19 +78,19 @@
             <div class="contact-form">
                 <h2>Contact Us</h2>
                 <form>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="number">Phone Number</label>
                         <input type="number" class="form-control" id="number" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="interest">Area of Interest</label>
                         <select class="form-control" id="interest">
                             <option>Fiction</option>
@@ -92,42 +99,52 @@
                             <option>History</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Membership Type</label><br>
-                        <input type="radio" id="regular" name="membership" value="Regular">
-                        <label for="regular">Regular</label><br>
-                        <input type="radio" id="premium" name="membership" value="Premium">
-                        <label for="premium">Premium</label><br>
+                    <div class="form-group mb-3">
+                        <label>Membership Type</label>
+                        <div class="row">
+                            <div class="col">
+                                <input type="radio" id="regular" name="membership" value="Regular">
+                                <label for="regular">Regular</label>
+                            </div>
+                            <div class="col">
+                                <input type="radio" id="premium" name="membership" value="Premium">
+                                <label for="premium">Premium</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label>Preferred Contact Method</label><br>
-                        <input type="checkbox" id="emailContact" name="contactMethod" value="Email">
-                        <label for="emailContact">Email</label><br>
-                        <input type="checkbox" id="phoneContact" name="contactMethod" value="Phone">
-                        <label for="phoneContact">Phone</label><br>
+                        <div class="row">
+                            <div class="col">
+                                <input type="checkbox" id="emailContact" name="contactMethod" value="Email">
+                                <label for="emailContact">Email</label>
+                            </div>
+                            <div class="col">
+                                <input type="checkbox" id="phoneContact" name="contactMethod" value="Phone">
+                                <label for="phoneContact">Phone</label>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <div class="map-section">
                 <div class="map-link">
-                <p>Find us on Google Maps:</p>
-                <a href="https://www.google.com/maps?q=12.9362,77.6062" target="_blank">View Location on Google Maps</a>
-                <h2 style="padding-left: 10px">Come, join us! </h2>
-                <div id="map"></div>
+                    <p>Find us on Google Maps:</p>
+                    <a href="https://www.google.com/maps?q=12.9362,77.6062" target="_blank">View Location on Google Maps</a>
                 </div>
+                <div id="map"></div>
             </div>
         </section>
     </main>
-    <footer>
+    <footer class="text-center mt-5">
         <p>&copy; 2024 Library Management System</p>
-    </footer>    
+    </footer>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
     <script>
-        map = L.map('map').setView([12.9362, 77.6062], 15);
+        var map = L.map('map').setView([12.9362, 77.6062], 15);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -137,6 +154,5 @@
             .bindPopup('Visit us here')
             .openPopup();
     </script>
-    
 </body>
 </html>
