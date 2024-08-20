@@ -15,7 +15,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#"><i class="fas fa-book-reader"></i> Library</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -53,8 +53,7 @@
             <div class="books-grid">
                 <div class="book-card">
                     <img src="assets/images/book1.jpg" alt="Book 1" class="book-cover">
-                    <h3>The Diary of a Young Girl
-                    </h3>
+                    <h3>The Diary of a Young Girl</h3>
                     <p>Author: Anne Frank</p>
                     <p>Genre: Biography</p>
                     <button class="btn btn-primary">More Info</button>
@@ -82,10 +81,68 @@
                 </div>
             </div>
         </section>
+
+        <section>
+            <h2>Library Book List</h2>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th colspan="8" class="text-center">Library Management System</th>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Year</th>
+                        <th>ISBN</th>
+                        <th>Pages</th>
+                        <th>Language</th>
+                        <th>Available</th>
+                    </tr>
+                </thead>
+                <tbody id="booksTable">
+                </tbody>
+            </table>
+        </section>
     </main>
     <footer>
         <p>&copy; 2024 Library Management System</p>
     </footer>
+
+    <script>
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "library-data.xml", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const xmlDoc = xhr.responseXML;
+                const books = xmlDoc.getElementsByTagName("book");
+                let tableContent = "";
+                for (let i = 0; i < books.length; i++) {
+                    const title = books[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+                    const author = books[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
+                    const genre = books[i].getElementsByTagName("genre")[0].childNodes[0].nodeValue;
+                    const year = books[i].getElementsByTagName("year")[0].childNodes[0].nodeValue;
+                    const isbn = books[i].getElementsByTagName("isbn")[0].childNodes[0].nodeValue;
+                    const pages = books[i].getElementsByTagName("pages")[0].childNodes[0].nodeValue;
+                    const language = books[i].getElementsByTagName("language")[0].childNodes[0].nodeValue;
+                    const available = books[i].getElementsByTagName("available")[0].childNodes[0].nodeValue === "true" ? "Yes" : "No";
+
+                    tableContent += `<tr>
+                                        <td>${title}</td>
+                                        <td>${author}</td>
+                                        <td>${genre}</td>   
+                                        <td>${year}</td>
+                                        <td>${isbn}</td>
+                                        <td>${pages}</td>
+                                        <td>${language}</td>
+                                        <td>${available}</td>
+                                     </tr>`;
+                }
+                document.getElementById("booksTable").innerHTML = tableContent;
+            }
+        };
+        xhr.send();
+    </script>
 </body>
 
 </html>
