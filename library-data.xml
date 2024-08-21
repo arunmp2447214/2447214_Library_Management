@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE library SYSTEM "library.dtd">
+<?xml-stylesheet type="text/xsl" href="library.xsl"?>
 <library xmlns="http://www.example.com/library">
     <book>
         <title>The Great Gatsby</title>
